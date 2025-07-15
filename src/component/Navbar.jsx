@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { toggleType } from '../reduxToolkit/reducers/typeSlice';
+import { toggleType } from '../reduxToolkit/reducer/typeSlice';
+
 
 const Navbar = ({ toggleType, type }) => {
 

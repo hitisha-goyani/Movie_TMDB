@@ -13,7 +13,7 @@ const MovieGeners = ({list,setList}) => {
 
     function handleGeners(id){
         if(list.includes(id)){
-            let newlist = list.filter((e) => e.id)
+            let newlist = list.filter((e) => e != id)
             setList(newlist)
         }
 
@@ -26,8 +26,7 @@ const MovieGeners = ({list,setList}) => {
         {
             data?.genres?.map((ele)=>(
 
-                <button key={ele.id} onClick={()=>handleGeners(ele.id)} className={`border border-rose-400 text-rose-900  text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm  ${
-                    (ele.id) ? `bg-rose-400 text-black` : `bg-transparent`} `}>{ele.name}</button>
+                <button key={ele.id} onClick={()=>handleGeners(ele.id)} className={`border border-rose-400 text-rose-900  text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm  ${isGenres(ele.id) ? `bg-rose-400 text-black` : `bg-transparent`} `}>{ele.name}</button>
          
             ))
         }

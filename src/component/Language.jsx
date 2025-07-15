@@ -14,14 +14,14 @@ import { showMovie } from "../rtk_querys/MovieReducer/showMovie";
     setOpen(false);
   };
 
-  // Find selected language name to show on button
+
   const selectedLangName = data?.find((l) => l.iso_639_1 === selectedLang)?.english_name;
 
   return (
     <div className="relative inline-block text-left">
-      <button onClick={() => setOpen(!open)} /* ...other button props */>
+      <button onClick={() => setOpen(!open)}>
         {selectedLangName || "Select Language"}
-        {/* arrow icon */}
+       
       </button>
 
       {open && (
