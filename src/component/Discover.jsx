@@ -8,22 +8,21 @@ import Navbar from './Navbar'
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleType } from '../reduxToolkit/reducer/typeSlice'
 
+
 const Discover = () => {
+    const[lang,setLang] = useState(() => localStorage.getItem('selectedLang') || "");
+  
+    const dispatch = useDispatch();
     const type = useSelector((state) => state.typeToggle.type);
 
-  const { data, isLoading, error} = showMovie.useAllMovieQuery({endpoint:`discover/${type}`,page:page,lang:lang,list:list})
+
     const [page,setPage] = useState(1)
     const [list,setList] = useState([])
-    const[lang,setLang] = useState(() => localStorage.getItem('selectedLang') || "");
-
+  
+    const { data, isLoading, error} = showMovie.useAllMovieQuery({endpoint:`discover/${type}`,page:page,lang:lang,list:list})
     
     console.log(data)
-
-
-      const dispatch = useDispatch();
-    
-
-      
+ 
     useEffect(() => {
     localStorage.setItem('selectedLang', lang);
   }, [lang]);
