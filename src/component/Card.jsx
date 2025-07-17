@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 const Card = ({ele,type}) => {
 
@@ -7,16 +8,16 @@ const Card = ({ele,type}) => {
     <div>
       
 
-<div class="max-w-sm p-3 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+<div className="max-w-sm p-3 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
     <a href="#">
-        <img class="rounded-t-lg" src={`https://image.tmdb.org/t/p/w500${ele.poster_path}`} alt={movieName} />
+        <img className="rounded-t-lg" src={`https://image.tmdb.org/t/p/w500${ele.poster_path}`} alt={movieName} />
     </a>
-    <div class="p-5">
+    <div className="p-5">
         <a href="#">
-            <h6 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{ele.title}</h6>
+            <h6 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{ele.title}</h6>
         </a>
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{ele.vote_average.toFixed(1)}</p>
-           <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Release:{ele.release_date || ele.first_air_date}</p>
+        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{ele.vote_average.toFixed(1)}</p>
+           <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Release:{ele.release_date || ele.first_air_date}</p>
            <Link
             to={`/discover/${type}/${ele.id}`}
             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center"

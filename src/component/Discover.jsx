@@ -10,55 +10,48 @@ import { toggleType } from '../reduxToolkit/reducer/typeSlice'
 
 
 const Discover = () => {
-    const[lang,setLang] = useState(() => localStorage.getItem('selectedLang') || "");
-  
-    const dispatch = useDispatch();
-    const type = useSelector((state) => state.typeToggle.type);
+    const [lang, setLang] = useState(() => localStorage.getItem('selectedLang') || "");
 
-
-    const [page,setPage] = useState(1)
-    const [list,setList] = useState([])
-  
-    const { data, isLoading, error} = showMovie.useAllMovieQuery({endpoint:`discover/${type}`,page:page,lang:lang,list:list})
-    
-    console.log(data)
  
-    useEffect(() => {
+  useEffect(() => {
     localStorage.setItem('selectedLang', lang);
   }, [lang]);
 
+  const dispatch = useDispatch();
+  const type = useSelector((state) => state.typeToggle.type);
 
-    const handleToggleType = () => {
-        dispatch(toggleType());
+  const [page, setPage] = useState(1);
+  const [list, setList] = useState([]);
+
+  const { data, isLoading, error } = showMovie.useAllMovieQuery({
+    endpoint: `discover/${type}`, page: page, lang: lang, list: list,
+  });
+
+  const handleToggleType = () => {
+    dispatch(toggleType());
     setPage(1);
   };
 
-    if (isLoading) return <div>Loading movies...</div>;
+  if (isLoading) return <div>Loading movies...</div>;
   if (error) return <div>Failed to load movies.</div>;
   if (!data || !data.results) return <div>No movies found.</div>;
-  
+
   return (
-
     <>
-    <Navbar toggleType={handleToggleType} type={type} />
-    <Language setLang={setLang} />
-   <MovieGeners setList={setList} list={list}/>
-    <h1 className='font-bold text-white text-center'>Discover</h1>
-    <div class=" max-w-7xl mt-10 mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-6">
+      <Navbar toggleType={handleToggleType} type={type} />
+      <Language setLang={setLang} />
+      <MovieGeners setList={setList} list={list} />
 
-{
-    data?.results.map((ele) =>(
-
-    <Card key={ele.id} ele={ele} type={type}/>
-   
-    ))
-
-}
-</div>
-    <Pagination page={page} setPage={setPage}/>
-   
+      <h1 className="font-bold text-white text-center text-2xl">Discover</h1>
+      <div className="max-w-7xl mx-auto mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {data.results.map((ele) => (
+          <Card key={ele.id} ele={ele} type={type} />
+        ))}
+      </div>
+      <Pagination page={page} setPage={setPage} />
+    
     </>
-  )
+  );
 }
 
 export default Discover
