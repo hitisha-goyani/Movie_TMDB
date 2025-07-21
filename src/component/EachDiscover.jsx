@@ -12,6 +12,7 @@ const EachDiscover = () => {
     endpoint: `${type}/${id}`,
   });
 
+  console.log(data)
   const { data: credits } = showMovie.useAllMovieQuery({ endpoint: `${type}/${id}/credits` });
   const { data: videoData, isLoading: videoLoading } = showMovie.useMovieVideoQuery({ id, type });
 
@@ -41,17 +42,7 @@ const EachDiscover = () => {
   return (
     <>
 
-      <div className=" mx-auto max-w-sm mt-10   shadow-xs" role="group">
-        <button type="button" className="px-7 py-2 text-sm  text-gray-400 font-medium  bg-[#090808] border-0 rounded-s-full hover:text-white focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white  dark:focus:ring-blue-500 dark:focus:text-white">
-          Trailers
-        </button>
-        <button type="button" className="px-7 py-2 text-sm text-gray-400  font-medium  bg-[#090808] border-0 hover:text-white focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white  dark:focus:ring-blue-500 dark:focus:text-white">
-          More To Watch
-        </button>
-        <button type="button" className="px-7 py-2 text-sm  text-gray-400 font-medium  bg-[#090808] border-0 rounded-e-full hover:text-white focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white  dark:focus:ring-blue-500 dark:focus:text-white">
-          Plans
-        </button>
-      </div>
+      
 
       <div className=' mt-10 ml-10 mr-10 '>
       
