@@ -7,10 +7,12 @@ import Language from './Language'
 import Navbar from './Navbar'
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleType } from '../reduxToolkit/reducer/typeSlice'
+import Banner from './Banner'
 
 
 const Discover = () => {
     const [lang, setLang] = useState(() => localStorage.getItem('selectedLang') || "");
+    
 
  
   useEffect(() => {
@@ -31,6 +33,7 @@ const Discover = () => {
     dispatch(toggleType());
     setPage(1);
   };
+    // const bannerData = data.results.slice(0, 5);
 
   if (isLoading) return <div>Loading movies...</div>;
   if (error) return <div>Failed to load movies.</div>;
@@ -39,10 +42,11 @@ const Discover = () => {
   return (
     <>
       <Navbar toggleType={handleToggleType} type={type} />
+      <Banner data={data} type={type}  />
       <Language setLang={setLang} />
       <MovieGeners setList={setList} list={list} />
 
-      <h1 className="font-bold text-white text-center text-2xl">Discover</h1>
+      <h1 className="font-bold text-white text-center text-2xl mt-7">Discover</h1>
       <div className="max-w-7xl mx-auto mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {data.results.map((ele) => (
           <Card key={ele.id} ele={ele} type={type} />

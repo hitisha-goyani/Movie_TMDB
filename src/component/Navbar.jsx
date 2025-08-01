@@ -1,48 +1,117 @@
-import { useDispatch } from "react-redux"
 
 
+import React, { useState } from "react";
+import { FaSearch, FaUserCircle, FaBars, FaTimes } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux"; 
+import { setType } from "../reduxToolkit/reducer/typeSlice";
 
-const Navbar = ({ toggleType, type }) => {
+const Navbar = () => {
+  const dispatch = useDispatch();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const type = useSelector((state) => state.type);
 
-
-
- 
-  const dispatch = useDispatch()
+  const handleSetType = (value) => {
+    dispatch(setType(value));
+    setMenuOpen(false);
+  };
 
   return (
+    <nav className="bg-black text-white shadow-md fixed top-0 left-0 w-full z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <div className="flex-shrink-0 text-2xl font-bold text-red-600">
+            🎬 MovieHub
+          </div>
 
-    <nav className="bg-white border-gray-200 dark:bg-gray-900">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a className="flex items-center space-x-3 rtl:space-x-reverse">
+          {/* Desktop Links */}
+          <div className="hidden md:flex space-x-8 text-sm uppercase font-semibold tracking-wide">
+            <a href="#" className="hover:text-red-500 transition">Home</a>
 
-          <a className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Movie Web</a>
-        </a>
-        {/* <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-          <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Get started</button>
-          <button data-collapse-toggle="navbar-cta" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-cta" aria-expanded="false">
-            <span className="sr-only">Open main menu</span>
+            <a
+              href="#"
+              onClick={() => handleSetType("movie")}
+              className={`transition duration-300 ${
+                type === "movie" ? "text-red-500" : "hover:text-red-500"
+              }`}
+            >
+              Movies
+            </a>
 
-          </button> 
-        </div> */}
-        <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
-          <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-            <li>
-              <a href="#" className="block py-2 px-3 md:p-0 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:dark:text-blue-500" aria-current="page">Home</a>
-            </li>
-            <li>
-              <a href="#" className="block py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</a>
-            </li>
+            <a
+              href="#"
+              onClick={() => handleSetType("tv")}
+              className={`transition duration-300 ${
+                type === "tv" ? "text-red-500" : "hover:text-red-500"
+              }`}
+            >
+              TV Shows
+            </a>
 
-            <button onClick={() => dispatch(toggleType())} style={{ marginBottom: "1rem" }}>
-              {type === "movie" ? "TV Shows" : "Movies"}
+            <a href="#" className="hover:text-red-500 transition">Trending</a>
+          </div>
+
+          {/* Right icons */}
+          <div className="hidden md:flex items-center space-x-4">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Search..."
+                className="bg-gray-800 text-white rounded-full px-4 py-1 pl-10 text-sm focus:outline-none"
+              />
+              <FaSearch className="absolute left-3 top-2 text-gray-400" />
+            </div>
+            <FaUserCircle className="text-2xl hover:text-red-500 cursor-pointer" />
+          </div>
+
+          {/* Mobile toggle */}
+          <div className="md:hidden">
+            <button onClick={() => setMenuOpen(!menuOpen)}>
+              {menuOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
             </button>
-
-          </ul>
+          </div>
         </div>
       </div>
+
+      {/* Mobile Dropdown */}
+      {menuOpen && (
+        <div className="bg-black px-4 py-2 md:hidden space-y-2">
+          <a href="#" className="block py-2 border-b border-gray-700 hover:text-red-500">Home</a>
+
+          <a
+            href="#"
+            onClick={() => handleSetType("movie")}
+            className={`block py-2 border-b border-gray-700 ${
+              type === "movie" ? "text-red-500" : "hover:text-red-500"
+            }`}
+          >
+            Movies
+          </a>
+
+          <a
+            href="#"
+            onClick={() => handleSetType("tv")}
+            className={`block py-2 border-b border-gray-700 ${
+              type === "tv" ? "text-red-500" : "hover:text-red-500"
+            }`}
+          >
+            TV Shows
+          </a>
+
+          <a href="#" className="block py-2 border-b border-gray-700 hover:text-red-500">Trending</a>
+
+          <div className="mt-2 relative">
+            <input
+              type="text"
+              placeholder="Search..."
+              className="w-full bg-gray-800 text-white rounded-full px-4 py-1 pl-10 text-sm focus:outline-none"
+            />
+            <FaSearch className="absolute left-3 top-2 text-gray-400" />
+          </div>
+        </div>
+      )}
     </nav>
+  );
+};
 
-  )
-}
-
-export default Navbar
+export default Navbar;

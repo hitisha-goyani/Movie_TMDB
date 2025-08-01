@@ -16,8 +16,9 @@ const typeSlice = createSlice({
       state.type = action.payload;
       localStorage.setItem('selectedType', state.type);  
     },
+    setSearch: (state, action) => action.payload
   },
 });
 
-export const { toggleType, setType } = typeSlice.actions;
+export const { toggleType, setType,setSearch } = typeSlice.actions;
 export default typeSlice.reducer;

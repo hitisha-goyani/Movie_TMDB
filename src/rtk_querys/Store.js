@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import typeReducer from "../reduxToolkit/reducer/typeSlice"
+import searchReducer from "../reduxToolkit/reducer/typeSlice"
 
 
 
@@ -9,6 +10,7 @@ export const store = configureStore({
   reducer: {
     [showMovie.reducerPath]: showMovie.reducer,
       typeToggle: typeReducer, 
+      search: searchReducer,
 
   },
   middleware: (getDefaultMiddleware) =>
