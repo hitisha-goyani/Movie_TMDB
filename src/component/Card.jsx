@@ -83,7 +83,9 @@ const Card = ({ ele, type }) => {
   const rating = ele.vote_average.toFixed(1);
 
   return (
+    
     <div className="relative group overflow-hidden rounded-xl shadow-md hover:shadow-2xl transition-shadow duration-300">
+      
       <img
         src={`https://image.tmdb.org/t/p/w500${ele.poster_path}`}
         alt={title}

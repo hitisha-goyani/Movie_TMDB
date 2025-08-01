@@ -15,6 +15,13 @@ export const showMovie = createApi({
     movieVideo: build.query({
       query: ({ id, type }) => `/${type}/${id}/videos?api_key=${API_KEY}&language=en-US`,
     }),
+     getTopRatedMovies: build.query({
+      query: (type) => `${type}/top_rated?api_key=${API_KEY}&language=en-US&page=1`,
+    }),
+
     
     })
 })
+
+export const { useGetTopRatedMoviesQuery
+} =showMovie;
