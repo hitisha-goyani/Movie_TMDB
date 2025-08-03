@@ -12,6 +12,9 @@ export const showMovie = createApi({
       query: ({ endpoint,page=1 , list="" , lang=""}) =>
         `/${endpoint}?api_key=${API_KEY}&with_original_language=${lang}&page=${page}&with_genres=${list && list.join(",")}`,
     }),
+    getRecommendations: build.query({
+      query: ({ id, type }) => `${type}/${id}/recommendations?api_key=${API_KEY}&language=en-US&page=1`,
+    }),
     movieVideo: build.query({
       query: ({ id, type }) => `/${type}/${id}/videos?api_key=${API_KEY}&language=en-US`,
     }),
@@ -23,5 +26,5 @@ export const showMovie = createApi({
     })
 })
 
-export const { useGetTopRatedMoviesQuery
+export const { useGetTopRatedMoviesQuery,useGetRecommendationsQuery
 } =showMovie;

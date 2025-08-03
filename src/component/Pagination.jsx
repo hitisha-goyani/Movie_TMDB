@@ -10,7 +10,7 @@ const Pagination = ({ page, setPage }) => {
   return (
     <div className="my-10">
       <div className="flex max-w-xs mx-auto">
-        {/* Previous Button */}
+   
         <button
           onClick={() => setPage(page > 1 ? page - 1 : 1)}
           className="flex items-center justify-center px-4 h-10 me-3 text-sm font-medium text-white bg-red-600 border border-red-700 rounded-lg hover:bg-red-700 transition"
@@ -32,12 +32,11 @@ const Pagination = ({ page, setPage }) => {
           Previous
         </button>
 
-        {/* Page Number */}
         <span className="flex items-center justify-center px-4 h-10 text-sm font-semibold text-red-600 bg-white border border-red-600 rounded-lg">
           {page}
         </span>
 
-        {/* Next Button */}
+      
         <button
           onClick={() => setPage(page + 1)}
           className="flex items-center justify-center px-4 h-10 ms-3 text-sm font-medium text-white bg-red-600 border border-red-700 rounded-lg hover:bg-red-700 transition"

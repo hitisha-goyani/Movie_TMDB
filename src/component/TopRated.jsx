@@ -1,12 +1,16 @@
-import React from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
+import { useGetTopRatedMoviesQuery } from "../rtk_querys/MovieReducer/showMovie";
 
-import { Link } from 'react-router-dom';
-import { useGetTopRatedMoviesQuery } from '../rtk_querys/MovieReducer/showMovie';
-
-const TopRated = ({ type}) => {
+const TopRated = ({ type }) => {
   const { data, isLoading, error } = useGetTopRatedMoviesQuery(type);
 
-  if (isLoading) return <div className="text-white">Loading Top Rated {type === 'tv' ? 'TV Shows' : 'Movies'}...</div>;
+  if (isLoading)
+    return (
+      <div className="text-white">
+        Loading Top Rated {type === "tv" ? "TV Shows" : "Movies"}...
+      </div>
+    );
   if (error) return <div className="text-red-500">Error loading {type}!</div>;
 
   return (
@@ -17,26 +21,44 @@ const TopRated = ({ type}) => {
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
         {data?.results?.map((item) => (
-          <Link
-            to={`/discover/${type}/${item.id}`}
+          <div
             key={item.id}
-            className="bg-gray-900 hover:bg-red-600 transition duration-300 rounded-lg overflow-hidden shadow-lg group"
+            className="relative rounded-xl overflow-hidden shadow-xl group transition-all duration-300 transform hover:scale-105 bg-black/80"
           >
+            {/* Poster Image */}
             <img
               src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
               alt={item.title || item.name}
-              className="w-full h-72 object-cover group-hover:opacity-80"
+              className="w-full h-72 object-cover group-hover:brightness-75 transition duration-300"
             />
-            <div className="p-3 text-white">
-              <h3 className="text-sm font-semibold line-clamp-1">
+
+            {/* Hover Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+              <h3 className="text-white text-base font-bold line-clamp-2">
                 {item.title || item.name}
               </h3>
-              <div className="text-xs text-gray-400 flex justify-between mt-1">
-                <span>{(item.release_date || item.first_air_date || '').slice(0, 4)}</span>
-                <span>⭐ {item.vote_average?.toFixed(1)}</span>
+              <p className="text-gray-300 text-xs mt-1 line-clamp-2">
+                {item.overview?.slice(0, 100)}...
+              </p>
+
+              <div className="flex justify-between items-center mt-2">
+                <span className="text-yellow-400 text-sm font-semibold">
+                  ⭐ {item.vote_average?.toFixed(1)}
+                </span>
+                <span className="text-xs text-gray-400">
+                  {(item.release_date || item.first_air_date || "").slice(0, 4)}
+                </span>
               </div>
+
+              {/* View Button */}
+              <Link
+                to={`/discover/${type}/${item.id}`}
+                className="mt-4 w-full bg-white/10 text-white text-sm font-semibold py-2 rounded-full text-center backdrop-blur-sm border border-white/20 hover:bg-red-600 hover:text-white transition-all duration-300 flex items-center justify-center gap-2"
+              >
+                View Details
+              </Link>
             </div>
-          </Link>
+          </div>
         ))}
       </div>
     </section>

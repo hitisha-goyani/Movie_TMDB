@@ -8,7 +8,7 @@ import Navbar from './Navbar'
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleType } from '../reduxToolkit/reducer/typeSlice'
 import Banner from './Banner'
-import Recommandation from './Recommandation'
+
 import Footer from './Footer'
 import TopRated from './TopRated'
 
@@ -17,7 +17,7 @@ import TopRated from './TopRated'
 const Discover = () => {
     const [lang, setLang] = useState(() => localStorage.getItem('selectedLang') || "");
     
-
+ 
  
   useEffect(() => {
     localStorage.setItem('selectedLang', lang);
@@ -37,6 +37,7 @@ const Discover = () => {
     dispatch(toggleType());
     setPage(1);
   };
+  
     // const bannerData = data.results.slice(0, 5);
 
   if (isLoading) return <div>Loading movies...</div>;
@@ -58,13 +59,9 @@ const Discover = () => {
       </div>
       <Pagination page={page} setPage={setPage} />
 
-      <Recommandation
- title="Recommended For You"
-  data={data?.results?.slice(0, 10)}
-  type={type}
-
-/>
+      
 <TopRated  type={type}  />
+
 
 <Footer/>
     

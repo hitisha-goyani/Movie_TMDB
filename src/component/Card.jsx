@@ -92,7 +92,7 @@ const Card = ({ ele, type }) => {
         className="w-full h-[400px] object-cover transform group-hover:scale-110 transition-transform duration-300"
       />
 
-      {/* Overlay */}
+    
       <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-4">
         <h3 className="text-white font-semibold text-lg mb-1">{title}</h3>
         <div className="flex justify-between text-sm text-gray-300 mb-2">
@@ -101,7 +101,7 @@ const Card = ({ ele, type }) => {
         </div>
       </div>
 
-      {/* Centered View Button */}
+
       <Link
         to={`/discover/${type}/${ele.id}`}
         className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300"
