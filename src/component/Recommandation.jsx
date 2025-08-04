@@ -1,73 +1,58 @@
-import React from 'react';
-import { useGetRecommendationsQuery } from '../rtk_querys/MovieReducer/showMovie';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
-const Recommandation = ({ id, type, title }) => {
-  const { data, isLoading, error } = useGetRecommendationsQuery({ id, type });
+const Recommandation = ({ id, type }) => {
+  const [recommendations, setRecommendations] = useState([]);
 
-  if (isLoading) return <p className="text-white text-center">Loading recommendations...</p>;
-  if (error) return <p className="text-red-500 text-center">Failed to load recommendations.</p>;
+  useEffect(() => {
+    if (!id || !type) return;
 
-  const items = data?.results?.slice(0, 10);
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(
+          `https://api.themoviedb.org/3/${type}/${id}/recommendations`,
+          {
+            params: {
+              api_key: "0c71655fa1788be5f1840ee6488c5e1e", // ⛳ Replace this with your actual API key
+              language: "en-US",
+            },
+          }
+        );
+        setRecommendations(res.data.results || []);
+      } catch (error) {
+        console.error("Error fetching recommendations:", error);
+      }
+    };
+
+    fetchData();
+  }, [id, type]);
+
+  if (!recommendations.length) return null;
 
   return (
-    <div className="px-4 py-10">
-      <h2 className="text-3xl font-bold text-white mb-6 border-l-4 border-red-500 pl-4">
-        {title}
-      </h2>
-
-      <Swiper
-        spaceBetween={20}
-        slidesPerView={2}
-        breakpoints={{
-          640: { slidesPerView: 3 },
-          768: { slidesPerView: 4 },
-          1024: { slidesPerView: 5 },
-        }}
-      >
-        {items?.map((item, index) => (
-          <SwiperSlide key={item.id}>
-            <div className="relative group transition-transform transform hover:scale-105">
-              {/* Number Badge */}
-              <div
-                className={`absolute top-4 left-4 z-30 text-[60px] font-black tracking-wide ${
-                  index === 0
-                    ? 'text-yellow-500 drop-shadow-lg'
-                    : index === 1
-                    ? 'text-gray-300 drop-shadow-md'
-                    : index === 2
-                    ? 'text-orange-400 drop-shadow-sm'
-                    : 'text-white/70'
-                }`}
-                style={{
-                  WebkitTextStroke: '1px black',
-                  textShadow: '2px 2px 10px rgba(0,0,0,0.7)',
-                }}
-              >
-                {index + 1}
-              </div>
-
-              {/* Poster */}
+    <div className="p-4 mt-10">
+      <h2 className="text-2xl font-bold text-white mb-4">Recommended For You</h2>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+        {recommendations.map((item) => (
+          <Link key={item.id} to={`/${type}/${item.id}`}>
+            <div className="bg-gray-800 rounded-lg overflow-hidden hover:scale-105 transition">
               <img
-                src={`https://image.tmdb.org/t/p/w400${item.poster_path}`}
+                src={
+                  item.poster_path
+                    ? `https://image.tmdb.org/t/p/w500${item.poster_path}`
+                    : "https://via.placeholder.com/500x750?text=No+Image"
+                }
                 alt={item.title || item.name}
-                className="w-full h-[450px] object-cover rounded-xl shadow-lg group-hover:brightness-75 transition-all duration-300"
+                className="w-full h-64 object-cover"
               />
-
-              {/* Hover Info */}
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
-                <h3 className="text-white text-lg font-bold">
-                  {item.title || item.name}
-                </h3>
-                <p className="text-gray-300 text-sm line-clamp-2 mt-1">
-                  ⭐ {item.vote_average?.toFixed(1)}
-                </p>
-              </div>
+              <p className="text-white text-sm p-2 truncate text-center">
+                {item.title || item.name}
+              </p>
             </div>
-          </SwiperSlide>
+          </Link>
         ))}
-      </Swiper>
+      </div>
     </div>
   );
 };

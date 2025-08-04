@@ -6,7 +6,6 @@ import { useParams } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { showMovie } from '../rtk_querys/MovieReducer/showMovie';
-import Recommandation from './Recommandation';
 
 
 const EachDiscover = () => {
@@ -90,7 +89,11 @@ const EachDiscover = () => {
     
         <div>
           <h2 className="text-xl font-semibold">Overview</h2>
-          <p className="text-gray-100 leading-relaxed">{data.overview}</p>
+          <p className="text-gray-100 leading-relaxed">
+  {data.overview.length > 170
+    ? `${data.overview.slice(0, 170)}...`
+    : data.overview}
+</p>
         </div>
 
       
@@ -196,7 +199,7 @@ const EachDiscover = () => {
     
    
 
-         <Recommandation title="Recommended For You" id={id} type={type} />
+     
     </>
   );
 };

@@ -8,14 +8,18 @@ import Navbar from './Navbar'
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleType } from '../reduxToolkit/reducer/typeSlice'
 import Banner from './Banner'
+import Recommandation from "./Recommandation"
 
 import Footer from './Footer'
 import TopRated from './TopRated'
+import { useParams } from "react-router-dom";
 
 
 
 const Discover = () => {
     const [lang, setLang] = useState(() => localStorage.getItem('selectedLang') || "");
+
+    const { id } = useParams();
     
  
  
@@ -60,7 +64,11 @@ const Discover = () => {
       <Pagination page={page} setPage={setPage} />
 
       
+    <Recommandation id={id}  type={type} />
+
+      
 <TopRated  type={type}  />
+
 
 
 <Footer/>
