@@ -1,6 +1,5 @@
-
-import React from 'react'
-import { Link } from 'react-router-dom'; 
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Card = ({ ele, type }) => {
   const movieName = ele.title || ele.name;
@@ -23,7 +22,6 @@ const Card = ({ ele, type }) => {
           <span className="text-sm text-gray-500 dark:text-gray-400">
             Release: {ele.release_date || ele.first_air_date}
           </span>
-
 
           <Link
             to={`/discover/${type}/${ele.id}`}

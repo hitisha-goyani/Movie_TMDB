@@ -32,7 +32,9 @@ const Recommandation = ({ id, type }) => {
 
   return (
     <div className="p-4 mt-10">
-      <h2 className="text-2xl font-bold text-white mb-4">Recommended For You</h2>
+      <h2 className="text-2xl font-bold text-white mb-4">
+        Recommended For You
+      </h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
         {recommendations.map((item) => (
           <Link key={item.id} to={`/${type}/${item.id}`}>

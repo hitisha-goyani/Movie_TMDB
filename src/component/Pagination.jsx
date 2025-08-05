@@ -1,16 +1,15 @@
-import React from 'react';
-import { showMovie } from '../rtk_querys/MovieReducer/showMovie';
+import React from "react";
+import { showMovie } from "../rtk_querys/MovieReducer/showMovie";
 
 const Pagination = ({ page, setPage }) => {
   const { data } = showMovie.useAllMovieQuery({
-    endpoint: 'discover/movie',
+    endpoint: "discover/movie",
     page: 1,
   });
 
   return (
     <div className="my-10">
       <div className="flex max-w-xs mx-auto">
-   
         <button
           onClick={() => setPage(page > 1 ? page - 1 : 1)}
           className="flex items-center justify-center px-4 h-10 me-3 text-sm font-medium text-white bg-red-600 border border-red-700 rounded-lg hover:bg-red-700 transition"
@@ -36,7 +35,6 @@ const Pagination = ({ page, setPage }) => {
           {page}
         </span>
 
-      
         <button
           onClick={() => setPage(page + 1)}
           className="flex items-center justify-center px-4 h-10 ms-3 text-sm font-medium text-white bg-red-600 border border-red-700 rounded-lg hover:bg-red-700 transition"
