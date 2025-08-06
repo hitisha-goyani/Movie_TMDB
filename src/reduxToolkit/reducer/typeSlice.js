@@ -16,7 +16,7 @@ const typeSlice = createSlice({
       state.type = action.payload;
       localStorage.setItem('selectedType', state.type);
     },
-    setSearch: (state, action) => action.payload
+   
   },
 });
 
