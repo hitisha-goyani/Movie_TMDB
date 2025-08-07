@@ -1,62 +1,41 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router';
+import { showMovie } from '../rtk_querys/MovieReducer/showMovie';
 
-const Recommandation = ({ id, type }) => {
-  const [recommendations, setRecommendations] = useState([]);
-
-  useEffect(() => {
-    if (!id || !type) return;
-
-    const fetchData = async () => {
-      try {
-        const res = await axios.get(
-          `https://api.themoviedb.org/3/${type}/${id}/recommendations`,
-          {
-            params: {
-              api_key: "0c71655fa1788be5f1840ee6488c5e1e", // ⛳ Replace this with your actual API key
-              language: "en-US",
-            },
-          }
-        );
-        setRecommendations(res.data.results || []);
-      } catch (error) {
-        console.error("Error fetching recommendations:", error);
-      }
-    };
-
-    fetchData();
-  }, [id, type]);
-
-  if (!recommendations.length) return null;
+const Recommandation = () => {
+  const { data } = showMovie.useAllMovieQuery({ endpoint: "movie/541671/recommendations" });
 
   return (
-    <div className="p-4 mt-10">
-      <h2 className="text-2xl font-bold text-white mb-4">
-        Recommended For You
-      </h2>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-        {recommendations.map((item) => (
-          <Link key={item.id} to={`/${type}/${item.id}`}>
-            <div className="bg-gray-800 rounded-lg overflow-hidden hover:scale-105 transition">
-              <img
-                src={
-                  item.poster_path
-                    ? `https://image.tmdb.org/t/p/w500${item.poster_path}`
-                    : "https://via.placeholder.com/500x750?text=No+Image"
-                }
-                alt={item.title || item.name}
-                className="w-full h-64 object-cover"
-              />
-              <p className="text-white text-sm p-2 truncate text-center">
-                {item.title || item.name}
-              </p>
+    <>
+      <h1 className="font-bold text-red-600 text-center text-3xl mt-6">Recommendations</h1>
+      <div className='max-w-7xl mx-auto mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4'>
+        {
+          data?.results.map((ele) => (
+            <div key={ele.id} className="bg-black border border-red-600 rounded-lg shadow-lg hover:shadow-red-500/50 transition-shadow duration-300">
+              <a href="#">
+                <img className="rounded-t-lg w-full h-56 object-cover" src={`https://image.tmdb.org/t/p/w500${ele.backdrop_path}`} alt={ele.original_title} />
+              </a>
+              <div className="p-4">
+                <a href="#">
+                  <h5 className="mb-2 text-xl font-bold tracking-tight text-white">{ele.original_title}</h5>
+                </a>
+                <p className="mb-3 text-sm text-gray-400">{ele.release_date}</p>
+                <Link
+                  to={`/discover/${ele.media_type}/${ele.id}`}
+                  className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-red-700 rounded hover:bg-red-800 focus:ring-2 focus:outline-none focus:ring-red-500"
+                >
+                  Read more
+                  <svg className="rtl:rotate-180 w-4 h-4 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                  </svg>
+                </Link>
+              </div>
             </div>
-          </Link>
-        ))}
+          ))
+        }
       </div>
-    </div>
+    </>
   );
-};
+}
 
 export default Recommandation;

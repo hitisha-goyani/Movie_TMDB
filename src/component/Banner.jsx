@@ -8,7 +8,7 @@ import { RiPlayCircleLine } from "@remixicon/react";
 import { useNavigate } from "react-router-dom";
 
 const Banner = ({ data }) => {
-  const type = useSelector((state) => state.type);
+  const type = useSelector((state) => state.typeToggle.type);
   const navigate = useNavigate();
 
   return (
@@ -42,7 +42,7 @@ const Banner = ({ data }) => {
                   </p>
 
              <button
-  onClick={() => navigate(`/details/${type}/${item.id}`)}
+  onClick={() => navigate(`/discover/${type}/${item.id}`)}
   className="group flex items-center gap-2 bg-gradient-to-r from-red-600 to-red-800 hover:from-red-500 hover:to-red-700 text-white px-6 py-2 rounded-md transition duration-300 shadow-md hover:scale-105 animate-fade-in-up delay-200"
 >
   <RiPlayCircleLine className="w-6 h-6 group-hover:scale-110 transition" />
