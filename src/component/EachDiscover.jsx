@@ -12,7 +12,6 @@ const EachDiscover = () => {
     endpoint: `${type}/${id}`,
   });
 
-  // console.log(data)
   const { data: credits } = showMovie.useAllMovieQuery({
     endpoint: `${type}/${id}/credits`,
   });
@@ -150,56 +149,49 @@ const EachDiscover = () => {
         </div>
       )}
 
-
       <h2 className="text-3xl font-bold text-white my-12 border-l-4  border-red-600 pl-4">
-  Top Billed Cast
-</h2>
+        Top Billed Cast
+      </h2>
 
-<Swiper
-  spaceBetween={25}
-  slidesPerView="auto"
-  grabCursor={true}
-  navigation
-  className="custom-carousel relative"
->
-  {credits.cast.slice(0, 15).map((cast) => (
-    <SwiperSlide
-      key={cast.id}
-      style={{ width: "180px" }}
-      className="rounded-2xl bg-black/50 backdrop-blur-lg border border-red-800 hover:border-red-500 
+      <Swiper
+        spaceBetween={25}
+        slidesPerView="auto"
+        grabCursor={true}
+        navigation
+        className="custom-carousel relative"
+      >
+        {credits.cast.slice(0, 15).map((cast) => (
+          <SwiperSlide
+            key={cast.id}
+            style={{ width: "180px" }}
+            className="rounded-2xl bg-black/50 backdrop-blur-lg border border-red-800 hover:border-red-500 
                  shadow-lg hover:shadow-red-500/50 transition-all duration-500 hover:-translate-y-3"
-    >
-      <div className="rounded-2xl overflow-hidden relative group">
-        {/* Image */}
-        <img
-          src={
-            cast.profile_path
-              ? `https://image.tmdb.org/t/p/w185${cast.profile_path}`
-              : "https://via.placeholder.com/185x278?text=No+Image"
-          }
-          alt={cast.name}
-          className="w-full h-[260px] object-cover transform group-hover:scale-110 transition-transform duration-500"
-        />
+          >
+            <div className="rounded-2xl overflow-hidden relative group">
+              <img
+                src={
+                  cast.profile_path
+                    ? `https://image.tmdb.org/t/p/w185${cast.profile_path}`
+                    : "https://via.placeholder.com/185x278?text=No+Image"
+                }
+                alt={cast.name}
+                className="w-full h-[260px] object-cover transform group-hover:scale-110 transition-transform duration-500"
+              />
 
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
 
-        {/* Cast info */}
-        <div className="absolute bottom-0 p-3 w-full">
-          <h3 className="font-bold text-sm text-white truncate group-hover:text-red-400 transition-colors duration-300">
-            {cast.name}
-          </h3>
-          <p className="text-xs text-gray-300 truncate italic">
-            {cast.character || "—"}
-          </p>
-        </div>
-      </div>
-    </SwiperSlide>
-  ))}
-
-  
-</Swiper>
-
+              <div className="absolute bottom-0 p-3 w-full">
+                <h3 className="font-bold text-sm text-white truncate group-hover:text-red-400 transition-colors duration-300">
+                  {cast.name}
+                </h3>
+                <p className="text-xs text-gray-300 truncate italic">
+                  {cast.character || "—"}
+                </p>
+              </div>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </>
   );
 };

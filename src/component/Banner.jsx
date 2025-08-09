@@ -41,15 +41,15 @@ const Banner = ({ data }) => {
                     {item.overview}
                   </p>
 
-             <button
-  onClick={() => navigate(`/discover/${type}/${item.id}`)}
-  className="group flex items-center gap-2 bg-gradient-to-r from-red-600 to-red-800 hover:from-red-500 hover:to-red-700 text-white px-6 py-2 rounded-md transition duration-300 shadow-md hover:scale-105 animate-fade-in-up delay-200"
->
-  <RiPlayCircleLine className="w-6 h-6 group-hover:scale-110 transition" />
-  <span className="font-semibold tracking-wide">
-    View Details
-  </span>
-</button>
+                  <button
+                    onClick={() => navigate(`/discover/${type}/${item.id}`)}
+                    className="group flex items-center gap-2 bg-gradient-to-r from-red-600 to-red-800 hover:from-red-500 hover:to-red-700 text-white px-6 py-2 rounded-md transition duration-300 shadow-md hover:scale-105 animate-fade-in-up delay-200"
+                  >
+                    <RiPlayCircleLine className="w-6 h-6 group-hover:scale-110 transition" />
+                    <span className="font-semibold tracking-wide">
+                      View Details
+                    </span>
+                  </button>
                 </div>
 
                 <div className="relative hidden md:block shrink-0 animate-fade-in-right">
