@@ -192,6 +192,44 @@ const EachDiscover = () => {
           </SwiperSlide>
         ))}
       </Swiper>
+
+
+      {/*-------------------------------- company section ----------------------------------*/}
+
+       <div className="px-6 py-4 text-white">
+  {data.production_companies?.length > 0 && (
+    <div className="mt-3 bg-black/60 p-5 rounded-2xl border border-red-600 shadow-lg">
+      <h2 className="text-3xl font-bold text-white my-12 border-l-4  border-red-600 pl-4">
+        Production Companies
+      </h2>
+
+      <div className="flex flex-wrap gap-4">
+        {data.production_companies.map((company) => (
+          <div
+            key={company.id}
+            className="flex items-center gap-3 bg-black/80 rounded-lg px-4 py-2 border border-red-700 hover:bg-red-700/20 transition"
+          >
+            {company.logo_path ? (
+              <img
+                src={`https://image.tmdb.org/t/p/w200${company.logo_path}`}
+                alt={company.name}
+                className="h-10 object-contain"
+              />
+            ) : (
+              <span className="px-3 py-1 bg-red-800 text-white text-sm rounded">
+                {company.name}
+              </span>
+            )}
+            {company.logo_path && (
+              <span className="text-sm text-gray-300">{company.name}</span>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+</div>
+
     </>
   );
 };

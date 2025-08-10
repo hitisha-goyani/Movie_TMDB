@@ -18,10 +18,14 @@ export const showMovie = createApi({
     getTopRatedMovies: build.query({
       query: (type) => `${type}/top_rated?api_key=${API_KEY}&language=en-US&page=1`,
     }),
+     getPopular: build.query({
+      query: ({ type = "movie", page = 1 }) =>
+        `/${type}/popular?api_key=${API_KEY}&language=en-US&page=${page}`,
+    }),
 
 
   })
 })
 
-export const { useGetTopRatedMoviesQuery
+export const { useGetTopRatedMoviesQuery,useGetPopularQuery
 } = showMovie;

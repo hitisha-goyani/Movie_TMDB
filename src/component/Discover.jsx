@@ -13,6 +13,7 @@ import Recommandation from "./Recommandation";
 import Footer from "./Footer";
 import TopRated from "./TopRated";
 import { useParams } from "react-router-dom";
+import Popular from "./Popular";
 
 const Discover = () => {
   const [lang, setLang] = useState(
@@ -66,6 +67,8 @@ const Discover = () => {
       <Pagination page={page} setPage={setPage} />
 
       <Recommandation id={id} type={type} />
+
+        
 
       <TopRated type={type} />
 

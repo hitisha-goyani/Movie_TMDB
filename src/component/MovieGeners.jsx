@@ -20,7 +20,7 @@ const MovieGeners = ({ list, setList }) => {
 
   return (
     <div className="max-w-7xl mx-auto mt-10 px-4">
-      <h2 className="text-2xl font-bold text-white mb-6 text-center tracking-wide">
+      <h2 className="n">
         Explore by Genre
       </h2>
 
