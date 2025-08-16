@@ -3,6 +3,7 @@ import { FaFacebookF, FaTwitter, FaInstagram, FaGithub, FaPlayCircle } from "rea
 import { Link } from "react-router-dom";
 
 const Footer = () => {
+  // footer start 
   return (
     <footer className="bg-gradient-to-t from-black via-red-900 to-black text-white mt-20">
       <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">

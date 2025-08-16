@@ -149,6 +149,8 @@ const EachDiscover = () => {
         </div>
       )}
 
+      {/* -------------------------------------------------------cast section start--------------------------------------------------------------------- */}
+
       <h2 className="text-3xl font-bold text-white my-12 border-l-4  border-red-600 pl-4">
         Top Billed Cast
       </h2>
