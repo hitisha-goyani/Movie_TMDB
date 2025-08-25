@@ -66,7 +66,7 @@ const Discover = () => {
       </div>
       <Pagination page={page} setPage={setPage} />
 
-      <Recommandation id={id} type={type} />
+   <Recommandation type={type} id={id} /> // For a movie
 
         
 
