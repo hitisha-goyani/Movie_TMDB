@@ -52,7 +52,7 @@ const Discover = () => {
     <>
       <Navbar toggleType={handleToggleType} type={type} />
       <Banner data={data} type={type} />
-   
+
       <MovieGeners setList={setList} list={list} />
       {/* <Language setLang={setLang} /> */}
 
@@ -66,9 +66,7 @@ const Discover = () => {
       </div>
       <Pagination page={page} setPage={setPage} />
 
-   <Recommandation type={type} id={id} /> // For a movie
-
-        
+      <Recommandation type={type} id={data.results[0]?.id} />
 
       <TopRated type={type} />
 

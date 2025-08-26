@@ -2,8 +2,12 @@ import React from 'react';
 import { Link } from 'react-router';
 import { showMovie } from '../rtk_querys/MovieReducer/showMovie';
 
-const Recommandation = () => {
-  const { data } = showMovie.useAllMovieQuery({ endpoint: "movie/541671/recommendations" });
+const Recommandation = ({id,type}) => {
+  // const { data } = showMovie.useAllMovieQuery({ endpoint: "movie/541671/recommendations" });
+
+  const {data} = showMovie.useAllMovieQuery({
+    endpoint:`${type}/${id}/recommendations`
+  })
 
   return (
     <>
@@ -33,11 +37,11 @@ const Recommandation = () => {
       
               <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 translate-y-5 group-hover:translate-y-0 transition-all duration-500 text-center">
                 <h5 className="text-lg font-bold text-red-500 px-4 mb-2 drop-shadow-lg">
-                  {ele.original_title}
+                  {ele.original_title||ele.name}
                 </h5>
           
                 <p className="text-sm text-gray-300 mb-4">
-                  {ele.release_date || "Unknown"}
+                  {ele.release_date || ele.first_air_date}
                 </p>
                 <Link
                   to={`/discover/${ele.media_type || "movie"}/${ele.id}`}

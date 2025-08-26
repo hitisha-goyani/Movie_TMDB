@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { showMovie } from "../rtk_querys/MovieReducer/showMovie";
+import Trending from "./Trending";
 
 const EachDiscover = () => {
   const { id, type } = useParams();
@@ -40,6 +41,9 @@ const EachDiscover = () => {
   const closeModal = () => {
     setModalOpen(false);
   };
+
+
+
 
   return (
     <>
@@ -151,80 +155,80 @@ const EachDiscover = () => {
 
       {/* -------------------------------------------------------cast section start--------------------------------------------------------------------- */}
 
-      <h2 className="text-3xl font-bold text-white my-12 border-l-4  border-red-600 pl-4">
+      <h2 className="text-3xl font-bold text-white mb-8 border-l-4 border-red-600 pl-4 capitalize my-12 ms-5">
         Top Billed Cast
       </h2>
 
-      <Swiper
-        spaceBetween={25}
-        slidesPerView="auto"
-        grabCursor={true}
-        navigation
-        className="custom-carousel relative"
-      >
-        {credits.cast.slice(0, 15).map((cast) => (
-          <SwiperSlide
-            key={cast.id}
-            style={{ width: "180px" }}
-            className="rounded-2xl bg-black/50 backdrop-blur-lg border border-red-800 hover:border-red-500 
-                 shadow-lg hover:shadow-red-500/50 transition-all duration-500 hover:-translate-y-3"
-          >
-            <div className="rounded-2xl overflow-hidden relative group">
-              <img
-                src={
-                  cast.profile_path
-                    ? `https://image.tmdb.org/t/p/w185${cast.profile_path}`
-                    : "https://via.placeholder.com/185x278?text=No+Image"
-                }
-                alt={cast.name}
-                className="w-full h-[260px] object-cover transform group-hover:scale-110 transition-transform duration-500"
-              />
+<Swiper
+  spaceBetween={25}
+  slidesPerView="auto"
+  grabCursor={true}
+  navigation
+  className="custom-carousel relative"
+>
+  {credits.cast.slice(0, 15).map((cast) => (
+    <SwiperSlide
+      key={cast.id}
+      style={{ width: "180px" }}
+      className="rounded-3xl bg-black/70 backdrop-blur-md shadow-lg hover:shadow-red-600/40 transition-shadow duration-500 transform hover:-translate-y-3 hover:scale-[1.05] group"
+    >
+      <div className="rounded-3xl overflow-hidden relative">
+        <img
+          src={
+            cast.profile_path
+              ? `https://image.tmdb.org/t/p/w185${cast.profile_path}`
+              : "https://via.placeholder.com/185x278?text=No+Image"
+          }
+          alt={cast.name}
+          className="w-full h-[260px] object-cover transition-transform duration-700 group-hover:scale-110"
+        />
 
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent pointer-events-none"></div>
 
-              <div className="absolute bottom-0 p-3 w-full">
-                <h3 className="font-bold text-sm text-white truncate group-hover:text-red-400 transition-colors duration-300">
-                  {cast.name}
-                </h3>
-                <p className="text-xs text-gray-300 truncate italic">
-                  {cast.character || "—"}
-                </p>
-              </div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+        <div className="absolute bottom-0 p-4 w-full bg-gradient-to-t from-black/80 to-transparent">
+          <h3 className="font-semibold text-white truncate group-hover:text-red-400 transition-colors duration-300">
+            {cast.name}
+          </h3>
+          <p className="text-xs text-gray-300 truncate italic">{cast.character || "—"}</p>
+        </div>
+      </div>
+    </SwiperSlide>
+  ))}
+</Swiper>
+
 
 
       {/*-------------------------------- company section ----------------------------------*/}
 
-       <div className="px-6 py-4 text-white">
+      <div className="px-6 py-4 text-white">
   {data.production_companies?.length > 0 && (
-    <div className="mt-3 bg-black/60 p-5 rounded-2xl shadow-lg">
-      <h2 className="text-3xl font-bold text-white my-12 border-l-4  border-red-600 pl-4">
+    <div className="mt-8 bg-black/60 backdrop-blur-md  rounded-3xl shadow-2xl">
+      <h2 className="text-3xl font-bold text-white mb-8 border-l-4 border-red-600 pl-4 capitalize">
         Production Companies
       </h2>
 
-      <div className="flex flex-wrap gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
         {data.production_companies.map((company) => (
           <div
             key={company.id}
-            className="flex items-center gap-3 bg-black/100 rounded-lg px-4 py-2 border border-red-700 hover:bg-red-700/20 transition"
+            className="bg-gradient-to-br from-zinc-900/70 to-zinc-800/50 backdrop-blur-sm rounded-xl p-5 flex items-center gap-5 shadow-lg hover:shadow-red-700/30 transition-shadow duration-400 group hover:scale-105"
           >
             {company.logo_path ? (
               <img
                 src={`https://image.tmdb.org/t/p/w200${company.logo_path}`}
                 alt={company.name}
-                className="h-10 object-contain"
+                className="h-14 object-contain drop-shadow-2xl group-hover:scale-110 transition-transform duration-300"
               />
             ) : (
-              <span className="px-3 py-1 bg-red-800 text-white text-sm rounded">
-                {company.name}
-              </span>
+              <div className="h-14 w-14 flex items-center justify-center bg-red-700/80 text-white font-bold rounded-full text-lg shadow-lg">
+                {company.name[0]}
+              </div>
             )}
-            {company.logo_path && (
-              <span className="text-sm text-gray-300">{company.name}</span>
-            )}
+
+            <span className="text-white text-lg font-semibold group-hover:text-red-400 transition-colors duration-300 truncate">
+              {company.name}
+            </span>
           </div>
         ))}
       </div>
@@ -232,6 +236,10 @@ const EachDiscover = () => {
   )}
 </div>
 
+
+
+{/* -------------------------------------------------------------trending section --------------------------------------------------------------------------------------- */}
+  <Trending type={type}/>
     </>
   );
 };
