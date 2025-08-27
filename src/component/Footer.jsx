@@ -16,7 +16,6 @@ const Footer = () => {
             Stream your favorite movies and TV shows powered by TMDB. Get ratings, reviews, and more.
           </p>
         </div>
-
     
         <div>
           <h4 className="text-lg font-semibold mb-4 text-red-400">Navigation</h4>

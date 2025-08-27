@@ -14,7 +14,7 @@ const Trending = ({ type = "movie" }) => {
     return <p className="text-white px-4">Failed to load trending movies.</p>;
 
   return (
-    <section className=" px-4 py-12">
+    <section className=" max-w-7xl mx-auto px-4 py-12">
        <h2 className="text-3xl font-bold text-white mb-8 border-l-4 border-red-600 pl-4 capitalize">
         Trending {type === "tv" ? "TV Shows" : "Movies"}
       </h2>

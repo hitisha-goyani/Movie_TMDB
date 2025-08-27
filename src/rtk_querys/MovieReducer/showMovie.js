@@ -26,10 +26,14 @@ export const showMovie = createApi({
       query: ({ mediaType = "movie", timeWindow = "day" }) =>
         `trending/${mediaType}/${timeWindow}?api_key=${API_KEY}`,
     }),
+ searchMulti: build.query({
+      query: ({ query, page = 1 }) =>
+        `/search/multi?api_key=${API_KEY}&query=${query}&page=${page}&language=en-US`,
+    }),
   
 
   })
 })
 
-export const { useGetTopRatedMoviesQuery,useGetPopularQuery,
+export const { useGetTopRatedMoviesQuery,useGetPopularQuery, useSearchMultiQuery 
 } = showMovie;
