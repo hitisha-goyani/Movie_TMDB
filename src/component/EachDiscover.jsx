@@ -6,6 +6,7 @@ import "swiper/css";
 import { showMovie } from "../rtk_querys/MovieReducer/showMovie";
 import Trending from "./Trending";
 import Recommandation from "./Recommandation";
+import Footer from "./Footer";
 
 const EachDiscover = () => {
   const { id, type } = useParams();
@@ -296,7 +297,13 @@ const EachDiscover = () => {
 {/* -------------------------------------------------------------recommandation section ---------------------------------------- */}
 
 <Recommandation id={id} type={type} />
+
+{/* --------------------------------------------------------footer section-------------------------------------------------------- */}
+    <Footer/>
+    
     </>
+
+
   );
 };
 

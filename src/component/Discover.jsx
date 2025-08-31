@@ -64,9 +64,16 @@ const Discover = () => {
           <Card key={ele.id} ele={ele} type={type} />
         ))}
       </div>
+
+
+      {/* pagination */}
       <Pagination page={page} setPage={setPage} />
 
+      {/* recommandation */}
+
       <Recommandation type={type} id={data.results[0]?.id} />
+
+      {/* topRated  */}
 
       <TopRated type={type} />
 
