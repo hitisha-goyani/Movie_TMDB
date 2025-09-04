@@ -3,7 +3,6 @@ import { showMovie } from "../rtk_querys/MovieReducer/showMovie";
 import Card from "./Card";
 import Pagination from "./Pagination";
 import MovieGeners from "./MovieGeners";
-import Language from "./Language";
 import Navbar from "./Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleType } from "../reduxToolkit/reducer/typeSlice";
