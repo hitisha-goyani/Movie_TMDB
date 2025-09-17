@@ -8,15 +8,25 @@ import {
 } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { setType } from "../reduxToolkit/reducer/typeSlice";
+import { useNavigate } from "react-router-dom";
+import {auth} from "../services/firebase"
 
 const Navbar = () => {
   const dispatch = useDispatch();
   const [menuOpen, setMenuOpen] = useState(false);
   const type = useSelector((state) => state.type);
 
+
   const handleSetType = (value) => {
     dispatch(setType(value));
     setMenuOpen(false);
+  };
+
+  const navigate = useNavigate();
+
+  const logout = () => {
+    auth.signOut();
+    navigate("/login");
   };
 
   return (
@@ -121,6 +131,12 @@ const Navbar = () => {
             />
             <FaSearch className="absolute left-3 top-2 text-gray-400" />
           </div>
+            <button
+        onClick={logout}
+        className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+      >
+        Logout
+      </button>
         </div>
       )}
     </nav>
