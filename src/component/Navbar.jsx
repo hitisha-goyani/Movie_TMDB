@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setType } from "../reduxToolkit/reducer/typeSlice";
 import { useNavigate } from "react-router-dom";
 import {auth} from "../services/firebase"
+import Search from "./Search";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -38,7 +39,7 @@ const Navbar = () => {
             <span>CineFlix</span>
           </div>
 
-          <div className="hidden md:flex space-x-8 text-sm uppercase font-semibold tracking-wide">
+          <div className="hidden ml-5 md:flex space-x-8 text-sm uppercase font-semibold tracking-wide">
             <a href="#" className="hover:text-red-500 transition">
               Home
             </a>
@@ -67,7 +68,7 @@ const Navbar = () => {
             </a>
           </div>
 
-          <div className="hidden md:flex items-center space-x-4">
+          {/* <div className="hidden md:flex items-center space-x-4">
             <div className="relative">
               <input
                 type="text"
@@ -77,6 +78,9 @@ const Navbar = () => {
               <FaSearch className="absolute left-3 top-2 text-gray-400" />
             </div>
             <FaUserCircle className="text-2xl hover:text-red-500 cursor-pointer" />
+          </div> */}
+         <div className="hidden md:block w-100">
+            <Search />
           </div>
 
           <div className="md:hidden">
@@ -123,14 +127,18 @@ const Navbar = () => {
             Trending
           </a>
 
-          <div className="mt-2 relative">
+          {/* <div className="mt-2 relative">
             <input
               type="text"
               placeholder="Search..."
               className="w-full bg-gray-800 text-white rounded-full px-4 py-1 pl-10 text-sm focus:outline-none"
             />
             <FaSearch className="absolute left-3 top-2 text-gray-400" />
-          </div>
+          </div> */}
+
+           <div className="block md:hidden">
+      <Search />
+    </div>
             <button
         onClick={logout}
         className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"

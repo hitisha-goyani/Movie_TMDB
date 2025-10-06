@@ -22,7 +22,10 @@ export const showMovie = createApi({
       query: ({ type = "movie", page = 1 }) =>
         `/${type}/popular?api_key=${API_KEY}&language=en-US&page=${page}`,
     }),
-  
+  movieDetail: build.query({
+      query: ({ id, type }) =>
+        `/${type}/${id}?api_key=${API_KEY}&language=en-US`,
+    }),
 
   
 
