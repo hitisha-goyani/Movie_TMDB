@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import Modal from "./Modal";
 import { showMovie } from "../rtk_querys/MovieReducer/showMovie";
 
-const API_KEY = "0c71655fa1788be5f1840ee6488c5e1e";
+const API_KEY = import.meta.env.VITE_MOVIE_API_KEY
 
 const TvDetail = () => {
   const { id } = useParams();

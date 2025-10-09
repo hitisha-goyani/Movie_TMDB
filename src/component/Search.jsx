@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 
-const API_KEY = "0c71655fa1788be5f1840ee6488c5e1e";
+const API_KEY = import.meta.env.VITE_MOVIE_API_KEY
 
 const Search = () => {
   const type = useSelector((state) => state.typeToggle.type); // 'movie' or 'tv'
