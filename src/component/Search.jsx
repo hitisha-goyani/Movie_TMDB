@@ -43,7 +43,7 @@ const Search = () => {
   };
 
   return (
-    <div className="relative  md:w-1/2 mx-auto px-4 z-50">
+    <div className="relative  md:w-1/2 lg:w-100 mx-auto px-4 z-50">
       {/* Search Input */}
       <div className="flex items-center bg-gray-900 bg-opacity-80 border border-gray-700 rounded-full px-4 py-2 shadow-lg focus-within:ring-2 focus-within:ring-red-500 transition-all duration-300">
         <FaSearch className="text-gray-400 mr-3" />

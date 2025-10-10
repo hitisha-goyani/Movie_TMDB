@@ -55,7 +55,7 @@ const Discover = () => {
       <MovieGeners setList={setList} list={list} />
       {/* <Language setLang={setLang} /> */}
 
-      <h1 className="text-3xl font-bold text-white ms-55 mb-8 mt-8 border-l-4  border-red-600 pl-4">
+      <h1 className="text-3xl font-bold text-white ms-80 mb-8 mt-8 border-l-4  border-red-600 pl-4">
         Now Streaming
       </h1>
       <div className="max-w-7xl mx-auto mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">

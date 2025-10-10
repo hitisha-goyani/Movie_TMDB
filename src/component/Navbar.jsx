@@ -25,10 +25,10 @@ const Navbar = () => {
 
   const navigate = useNavigate();
 
-  const logout = () => {
-    auth.signOut();
-    navigate("/login");
-  };
+  // const logout = () => {
+  //   auth.signOut();
+  //   navigate("/login");
+  // };
 
   return (
     <nav className="bg-black text-white shadow-md fixed top-0 left-0 w-full z-50">
@@ -79,7 +79,7 @@ const Navbar = () => {
             </div>
             <FaUserCircle className="text-2xl hover:text-red-500 cursor-pointer" />
           </div> */}
-         <div className="hidden md:block w-100">
+         <div className="hidden md:block w-100 max-w-[500px]">
             <Search />
           </div>
 
@@ -139,12 +139,12 @@ const Navbar = () => {
            <div className="block md:hidden">
       <Search />
     </div>
-            <button
+            {/* <button
         onClick={logout}
         className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
       >
         Logout
-      </button>
+      </button> */}
         </div>
       )}
     </nav>
